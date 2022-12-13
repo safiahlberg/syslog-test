@@ -1,0 +1,4 @@
+logging:
+  level:
+    syslog: INFO
+    filelog: INFO

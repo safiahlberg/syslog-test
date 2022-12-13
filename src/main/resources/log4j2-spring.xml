@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="warn" name="syslog-test" packages="">
+    <Appenders>
+        <Console name="DefaultConsoleAppender" target="SYSTEM_OUT" ignoreExceptions="false">
+        </Console>
+        <Syslog name="SyslogAppender" format="RFC5424" host="${env:SYSLOG_HOST:-localhost}"
+                port="${env:SYSLOG_PORT:-514}"
+                protocol="TCP" appName="${env:APP_NAME:-syslog-test}" mdcId="mdc" includeMDC="true"
+                facility="LOCAL0" newLine="true" connectTimeoutMillis="1000" reconnectionDelayMillis="200"
+                messageId="STest" id="App" ignoreExceptions="false" immediateFlush="true" immediateFail="true" />
+    </Appenders>
+
+    <Loggers>
+        <Logger name="SYSLOG" level="info" additivity="false">
+            <AppenderRef ref="SyslogAppender" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="DefaultConsoleAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
